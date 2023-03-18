@@ -17,11 +17,6 @@ public class BKT {
         this.capacities = capacities.clone();
         this.visitedStates = visitedStates.clone();
     }
-
-    public int getNumberOfSolutions() {
-        return numberOfSolutions;
-    }
-
     public void solve() {
         System.out.println("--------BKT------- ");
         solution = new ArrayDeque<>();
@@ -54,7 +49,7 @@ public class BKT {
 
         for (Main.ACTIONS ac : Main.ACTIONS.values()) {
             bktAlgorithm(Actions.doAction(state, capacities, ac));
-            solution.removeFirst();
+            solution.removeFirst(); // solution.pop();
         }
 
     }

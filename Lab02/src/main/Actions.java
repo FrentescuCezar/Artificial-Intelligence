@@ -3,10 +3,18 @@ package main;
 import java.util.Objects;
 
 public class Actions {
-    public static int[] pour(int[] currentState,int[] capacities, Main.ACTIONS into) {
+    public static int[] pour(int[] currentState, int[] capacities, Main.ACTIONS into) {
         int[] state = currentState.clone();
-        int fromJug = Objects.equals(into, Main.ACTIONS.FIRST) ? 1 : 0;
-        int toJug = Objects.equals(into, Main.ACTIONS.FIRST) ? 0 : 1;
+        int fromJug, toJug;
+
+        if (into == Main.ACTIONS.FIRST) {
+            fromJug = 1;
+            toJug = 0;
+        } else {
+            fromJug = 0;
+            toJug = 1;
+        }
+
 
         if (!StateVerifier.canPour(state, capacities, fromJug, toJug)) {
             state[0] = -999;
@@ -24,7 +32,7 @@ public class Actions {
         return state;
     }
 
-    public static int[] fill(int[] currentState,int[] capacities, Main.ACTIONS jug) {
+    public static int[] fill(int[] currentState, int[] capacities, Main.ACTIONS jug) {
         int[] state = currentState.clone();
 
         int pos = Objects.equals(jug, Main.ACTIONS.FIRST) ? 0 : 1;
@@ -49,14 +57,14 @@ public class Actions {
         return state;
     }
 
-    static int[] doAction(int[] state,int[] capacities, Main.ACTIONS action) {
+    static int[] doAction(int[] state, int[] capacities, Main.ACTIONS action) {
 
         switch (action) {
             case FILL_FIRST -> {
-                return fill(state,capacities, Main.ACTIONS.FIRST);
+                return fill(state, capacities, Main.ACTIONS.FIRST);
             }
             case FILL_SECOND -> {
-                return fill(state,capacities, Main.ACTIONS.SECOND);
+                return fill(state, capacities, Main.ACTIONS.SECOND);
             }
             case EMPTY_FIRST -> {
                 return empty(state, Main.ACTIONS.FIRST);
@@ -68,7 +76,7 @@ public class Actions {
                 return pour(state, capacities, Main.ACTIONS.SECOND);
             }
             case SECOND_TO_FIRST -> {
-                return pour(state,capacities, Main.ACTIONS.FIRST);
+                return pour(state, capacities, Main.ACTIONS.FIRST);
             }
             default -> {
                 return new int[2];

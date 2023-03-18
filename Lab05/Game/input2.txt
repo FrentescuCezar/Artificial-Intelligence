@@ -1,0 +1,5 @@
+PlayerA Up Middle Down
+PlayerB Left Center Right
+13/-2 1/4 7/4
+4/-3 3/3 6/5
+-1/-2 2/7 8/8

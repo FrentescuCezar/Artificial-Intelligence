@@ -50,7 +50,7 @@ public class BFS {
             for (Main.ACTIONS ac : Main.ACTIONS.values()) {
                 newState = Actions.doAction(state, Main.capacities, ac);
                 if(StateVerifier.isValidState(newState) && !StateVerifier.isStateVisited(newState, Main.visitedStates)) {
-                    stateLink.put(newState, state);
+                    stateLink.put(newState, state); // Key, Value
                     queue.add(newState);
                 }
             }
